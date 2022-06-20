@@ -1,0 +1,23 @@
+name: Cypress-Test-Report
+
+# Only trigger, when the build workflow succeeded
+on:
+  workflow_run:
+    workflows: ["pages-build-deployment"]
+    types:
+      - completed
+jobs:
+  cypress-test:
+    name: Run on Chrome 83
+    runs-on: ubuntu-18.04
+    container: cypress/browsers:node12.18.0-chrome83-ff77
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install cypress and verify
+        run: |
+          npm ci
+          $(npm bin)/cypress verify
+      - name: Run Cypress tests
+        run: npm run test
+        continue-on-error: false
