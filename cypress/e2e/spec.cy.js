@@ -1,17 +1,48 @@
 require('cypress-xpath')
-
-
 //site-avaialblity testing
 
-describe('Website Check', () => {
 
+// describe('Website Availibilty ', function () {
+//   it('Should test API response', function () {
+//     // Make an HTTP request to the API
+//     cy.request({
+//       method: 'GET',
+//       url: 'https://adminvns.github.io/', // Replace with your API URL
+//     }).then((response) => {
+//       // Assertions on the response
+//       expect(response.status).to.eq(200);
+      
+//       // Add more assertions as needed based on the API response structure
+//     });
+//   });
+// });
 
+//Checking Title of the website
 
-  it('Site Online Check', () => {
-    cy.visit('https://adminvns.github.io/')
-  })
+describe('Website Component Check', () => {
+  it('Site availability Test', async function () {
+    try {
+      // Make an HTTP request to the API using await
+      const response = await cy.request({
+        method: 'GET',
+        url: 'https://adminvns.github.io/', // Replace with your API URL
+      });
+
+      // Assertions on the response
+      expect(response.status).to.eq(200);
+     // expect(response.body).to.have.property('data');
+      // Add more assertions as needed based on the API response structure
+    } catch (error) {
+      // Handle any errors that may occur during the request
+      throw new Error(`Failed to fetch API: ${error.message}`);
+    }
+      
+      // Add more assertions as needed based on the API response structure
+    })
+
 
   it('Title Check', () => {
+    cy.visit('https://adminvns.github.io/')
     cy.title().should('include', 'Resume')
   })
   
@@ -26,22 +57,26 @@ describe('Website Check', () => {
 describe('SideMenu Check', () => {
 
 
-
+    
  
   it('LinkedIn link Check', () => {
-    cy.xpath('//header[@id="header"]/div/div/div/a[1]').should('have.attr', 'href', 'https://www.linkedin.com/in/adminvns/')
+    
+    cy.xpath(`//header[@id="header"]//a[@class='linkedin']`).should('have.attr', 'href', 'https://www.linkedin.com/in/adminvns/')
   })
 
   it('Github linkCheck', () => {
-    cy.xpath('//header[@id="header"]/div/div/div/a[2]').should('have.attr', 'href', 'https://github.com/adminvns')
+    cy.xpath(`//header[@id="header"]//a[@class='twitter']`).should('have.attr', 'href', 'https://github.com/adminvns')
   })
 
   it('Instagram link Check', () => {
-    cy.xpath('//header[@id="header"]/div/div/div/a[3]').should('have.attr', 'href', 'https://www.instagram.com/shubham_admin/')
+    cy.xpath(`//header[@id="header"]//a[@class='instagram']`).should('have.attr', 'href', 'https://www.instagram.com/shubham_admin/')
   })
 
   it('Github link Check', () => {
-    cy.xpath('//header[@id="header"]/div/div/div/a[4]').should('have.attr', 'href', 'skype:live:shubham.editor?chat')
+    cy.xpath(`//header[@id="header"]//a[@class='google-plus']`).should('have.attr', 'href', 'skype:live:shubham.editor?chat')
   })
 
 })
+
+
+
