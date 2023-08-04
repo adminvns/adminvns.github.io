@@ -19,5 +19,5 @@ jobs:
           npm ci
           $(npm bin)/cypress verify
       - name: Run Cypress tests
-        run: npm run test
+        run: npx cypress run --record --key ${{ secrets.CYPRESS_RECORD_KEY }} --browser chrome
         continue-on-error: false
