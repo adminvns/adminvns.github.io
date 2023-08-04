@@ -4,7 +4,8 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "npx cypress run --record --key c1bc6f85-c124-490d-afcc-03106da22e30 --browser chrome"
+    "test": "npx cypress run --record --key ${{ secrets.CYPRESS_RECORD_KEY }} --browser chrome",
+    "test local": "npx cypress run  --browser chrome --headed"
   },
   "keywords": [],
   "author": "",
