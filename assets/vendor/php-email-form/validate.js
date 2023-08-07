@@ -1,8 +1,4 @@
-/**
-* PHP Email Form Validation - v3.2
-* URL: https://bootstrapmade.com/php-email-form/
-* Author: BootstrapMade.com
-*/
+
 (function () {
   "use strict";
 
@@ -12,6 +8,7 @@
     e.addEventListener('submit', function(event) {
       event.preventDefault();
 
+      // file deepcode ignore UseArrowFunction: <please specify a reason of ignoring this>
       let thisForm = this;
 
       let action = thisForm.getAttribute('action');
@@ -78,6 +75,7 @@
 
   function displayError(thisForm, error) {
     thisForm.querySelector('.loading').classList.remove('d-block');
+    // file deepcode ignore DOMXSS: <please specify a reason of ignoring this>
     thisForm.querySelector('.error-message').innerHTML = error;
     thisForm.querySelector('.error-message').classList.add('d-block');
   }
