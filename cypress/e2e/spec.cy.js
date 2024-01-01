@@ -52,19 +52,17 @@ describe('Website Component Check', () => {
 
 
 //Side-menu link testing
-
-
 describe('SideMenu Check', () => {
+  beforeEach(() => {
+    cy.visit('https://adminvns.github.io/')
+    // Perform any common setup tasks needed before each test
+  })
 
-
-    
- 
   it('LinkedIn link Check', () => {
-    
     cy.xpath(`//header[@id="header"]//a[@class='linkedin']`).should('have.attr', 'href', 'https://www.linkedin.com/in/adminvns/')
   })
 
-  it('Github linkCheck', () => {
+  it('Twitter link Check', () => {
     cy.xpath(`//header[@id="header"]//a[@class='twitter']`).should('have.attr', 'href', 'https://github.com/adminvns')
   })
 
@@ -72,12 +70,10 @@ describe('SideMenu Check', () => {
     cy.xpath(`//header[@id="header"]//a[@class='instagram']`).should('have.attr', 'href', 'https://www.instagram.com/shubham_admin/')
   })
 
-  it('Github link Check', () => {
+  it('Google Plus link Check', () => {
     cy.xpath(`//header[@id="header"]//a[@class='google-plus']`).should('have.attr', 'href', 'skype:live:shubham.editor?chat')
   })
-
 })
-
 
 
 
