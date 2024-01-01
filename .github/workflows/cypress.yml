@@ -8,20 +8,19 @@ on:
       - completed
 
 jobs:
-  cypress-test:
+  deploy:
     runs-on: windows-latest # Use a Windows runner
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-      - name: Install Node.js
+      - name: Setup Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '12.x'
-
-      - name: Install Cypress and verify
-        run: |
-          npm ci
-          npx cypress verify
+          node-version: '18.x'
+      
+      - name: Install All node dependecies
+        run: npm i
 
       - name: Run Cypress tests
         run: npx cypress run --record --key ${{ secrets.CYPRESS_RECORD_KEY }} --browser chrome
