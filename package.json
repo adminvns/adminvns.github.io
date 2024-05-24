@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "test": "npx cypress run --record --key ${{ secrets.CYPRESS_RECORD_KEY }} --browser chrome",
-    "testlocal": "npx cypress run  --browser chrome --headed"
+    "testlocal": "npx cypress run  --browser chrome --headed --reporter mochawesome"
   },
   "keywords": [],
   "author": "",
@@ -14,7 +14,6 @@
     "axios": "^1.6.4",
     "cypress": "^13.10.0",
     "cypress-xpath": "^1.8.0",
-    "mocha-multi-reporters": "^1.5.1",
     "mochawesome": "^7.1.3"
   }
 }

@@ -9,8 +9,8 @@ module.exports = defineConfig({
   },
   "reporter": "mochawesome",
   "reporterOptions": {
-    "overwrite": false,
-    "html": false,
-    "json": true
+    "overwrite": true,
+    "html": true,
+    "json": false
   }
 });
