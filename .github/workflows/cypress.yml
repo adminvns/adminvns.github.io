@@ -27,8 +27,8 @@ jobs:
           npx cypress run --record --key ${{ secrets.CYPRESS_RECORD_KEY }} --browser chrome --reporter mocha-multi-reporters --reporter-options configFile=cypress.config.js
         continue-on-error: false
 
-      - name: Upload Mocha report to GitHub
+      - name: Upload Mocha Awesome report to GitHub
         uses: actions/upload-artifact@v2
         with:
-          name: cypress-mocha-report
-          path: cypress/reports/mocha
+          name: mocha-awesome-report
+          path: cypress/reports/mochawesome-report
