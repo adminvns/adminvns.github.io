@@ -19,12 +19,13 @@ jobs:
         with:
           node-version: '18.x'
       
-      - name: Install All node dependecies
+      - name: Install All node dependencies
         run: npm i
 
       - name: Run Cypress tests and generate Mocha report
         run: |
-          npx cypress run --record --key ${{ secrets.CYPRESS_RECORD_KEY }} --browser chrome --reporter mocha-multi-reporters --reporter-options configFile=cypress.json
+          npx cypress run --record --key ${{ secrets.CYPRESS_RECORD_KEY }} --browser chrome --reporter mocha-multi-reporters --reporter-options configFile=cypress.config.js
+        continue-on-error: false
 
       - name: Upload Mocha report to GitHub
         uses: actions/upload-artifact@v2
