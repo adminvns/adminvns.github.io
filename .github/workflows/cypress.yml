@@ -55,14 +55,16 @@ jobs:
             const failed = results.stats.failures;
             const duration = results.stats.duration;
             const summary = 'Cypress Results';
-            const annotations = [
-              {
-                path: 'mochawesome-report/mochawesome.json',
-                start_line: 0,
-                end_line: 0,
-                annotation_level: 'failure',
-                title: 'Result',
-                message: `Passed ✅: ${passed}\nFailed ❌: ${failed}\nDuration 🕗: ${duration} ms`
-              }
-            ];
-            github.annotations.create(${{ toJson(annotations) }});
+            const annotations = {
+              "title": summary,
+              "annotations": [
+                {
+                  "path": "mochawesome-report/mochawesome.json",
+                  "start_line": 0,
+                  "end_line": 0,
+                  "annotation_level": "failure",
+                  "message": `Passed ✅: ${passed}\nFailed ❌: ${failed}\nDuration 🕗: ${duration} ms`
+                }
+              ]
+            };
+            github.actions.createOrUpdateCheckRun(annotations);
