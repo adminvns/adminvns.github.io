@@ -14,68 +14,21 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      # Cache dependencies
-      - name: Cache dependencies
-        uses: actions/cache@v2
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
-
       - name: Setup Node.js
         uses: actions/setup-node@v2
         with:
           node-version: '20.x'
-          cache: 'npm'
-          cache-dependency-path: ~/.npm
-
+      
       - name: Install All node dependencies
-        run: npm ci
+        run: npm i
 
       - name: Run Cypress tests and generate Mocha Awesome report
         run: |
           npx cypress run --record --key ${{ secrets.CYPRESS_RECORD_KEY }} --browser chrome --reporter mochawesome
         continue-on-error: false
 
-      - name: Parse Cypress results
-        id: parse-cypress-results
-        run: |
-          const { readFileSync } = require('fs');
-          const results = JSON.parse(readFileSync('mochawesome-report/mochawesome.json', 'utf8'));
-          const passed = results.stats.passes;
-          const failed = results.stats.failures;
-          const duration = results.stats.duration;
-          console.log(`::set-output name=passed::${passed}`);
-          console.log(`::set-output name=failed::${failed}`);
-          console.log(`::set-output name=duration::${duration}`);
-        
       - name: Upload Mocha Awesome report to GitHub
         uses: actions/upload-artifact@v2
         with:
           name: mocha-awesome-report
           path: mochawesome-report
-      
-      - name: Set GitHub Actions annotations for Cypress results
-        uses: actions/github-script@v4
-        with:
-          script: |
-            const { readFileSync } = require('fs');
-            const results = JSON.parse(readFileSync('mochawesome-report/mochawesome.json', 'utf8'));
-            const passed = results.stats.passes;
-            const failed = results.stats.failures;
-            const duration = results.stats.duration;
-            const summary = 'Cypress Results';
-            const annotations = {
-              "title": summary,
-              "annotations": [
-                {
-                  "path": "mochawesome-report/mochawesome.json",
-                  "start_line": 0,
-                  "end_line": 0,
-                  "annotation_level": "failure",
-                  "message": `Passed ✅: ${passed}\nFailed ❌: ${failed}\nDuration 🕗: ${duration} ms`
-                }
-              ]
-            };
-            github.actions.createOrUpdateCheckRun(annotations);
