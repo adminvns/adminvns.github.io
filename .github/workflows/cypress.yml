@@ -27,8 +27,42 @@ jobs:
           npx cypress run --record --key ${{ secrets.CYPRESS_RECORD_KEY }} --browser chrome --reporter mochawesome
         continue-on-error: false
 
+      - name: Parse Cypress results
+        id: parse-cypress-results
+        run: |
+          const { readFileSync } = require('fs');
+          const results = JSON.parse(readFileSync('mochawesome-report/mochawesome.json', 'utf8'));
+          const passed = results.stats.passes;
+          const failed = results.stats.failures;
+          const duration = results.stats.duration;
+          console.log(`::set-output name=passed::${passed}`);
+          console.log(`::set-output name=failed::${failed}`);
+          console.log(`::set-output name=duration::${duration}`);
+        
       - name: Upload Mocha Awesome report to GitHub
         uses: actions/upload-artifact@v2
         with:
           name: mocha-awesome-report
           path: mochawesome-report
+      
+      - name: Set GitHub Actions annotations for Cypress results
+        uses: actions/github-script@v4
+        with:
+          script: |
+            const { readFileSync } = require('fs');
+            const results = JSON.parse(readFileSync('mochawesome-report/mochawesome.json', 'utf8'));
+            const passed = results.stats.passes;
+            const failed = results.stats.failures;
+            const duration = results.stats.duration;
+            const summary = 'Cypress Results';
+            const annotations = [
+              {
+                path: 'mochawesome-report/mochawesome.json',
+                start_line: 0,
+                end_line: 0,
+                annotation_level: 'failure',
+                title: 'Result',
+                message: `Passed ✅: ${passed}\nFailed ❌: ${failed}\nDuration 🕗: ${duration} ms`
+              }
+            ];
+            github.annotations.create(${{ toJson(annotations) }});
