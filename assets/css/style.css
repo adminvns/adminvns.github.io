@@ -198,8 +198,18 @@ h1, h2, h3, h4, h5, h6 {
 #hero {
   width: 100%;
   height: 100vh;
-  background: url("../img/background-shubam.jpg") top center;
-  background-size: cover;
+  /* background: url("../img/background-shubam.jpg") top center;
+  background-size: cover; */
+  overflow: hidden;
+}
+#bg-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Makes sure the video covers the entire container */
+  z-index: -1; /* Sends the video behind other content */
 }
 #hero:before {
   content: "";
