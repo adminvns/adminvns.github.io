@@ -12,7 +12,7 @@ jobs:
     runs-on: windows-latest # Use a Windows runner
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Setup Node.js
         uses: actions/setup-node@v2
@@ -28,7 +28,7 @@ jobs:
         continue-on-error: false
 
       - name: Upload Mocha Awesome report to GitHub
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: mocha-awesome-report
           path: mochawesome-report
