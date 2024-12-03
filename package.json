@@ -11,7 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "axios": "^1.6.4",
+    "axios": "^1.7.8",
     "cypress": "^13.10.0",
     "cypress-xpath": "^1.8.0",
     "mochawesome": "^7.1.3"
