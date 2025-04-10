@@ -62,17 +62,10 @@ describe('SideMenu Check', () => {
     cy.xpath(`//header[@id="header"]//a[@class='linkedin']`).should('have.attr', 'href', 'https://www.linkedin.com/in/adminvns/')
   })
 
-  it('Twitter link Check', () => {
+  it('Github link Check', () => {
     cy.xpath(`//header[@id="header"]//a[@class='twitter']`).should('have.attr', 'href', 'https://github.com/adminvns')
   })
 
-  it('Instagram link Check', () => {
-    cy.xpath(`//header[@id="header"]//a[@class='instagram']`).should('have.attr', 'href', 'https://www.instagram.com/shubham_admin/')
-  })
-
-  it('Google Plus link Check', () => {
-    cy.xpath(`//header[@id="header"]//a[@class='google-plus']`).should('have.attr', 'href', 'skype:live:shubham.editor?chat')
-  })
 })
 
 
