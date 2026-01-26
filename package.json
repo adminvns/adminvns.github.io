@@ -1,18 +1,20 @@
 {
-  "name": "resume_tester",
+  "name": "shubham_portfolio",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
   "scripts": {
     "test": "npx cypress run --record --key ${{ secrets.CYPRESS_RECORD_KEY }} --browser chrome",
-    "testlocal": "npx cypress run  --browser chrome --headed --reporter mochawesome"
+    "test:headless": "npx cypress run --browser chrome --reporter mochawesome",
+    "test:headed": "npx cypress run --browser chrome --headed --reporter mochawesome",
+    "test:open": "npx cypress open"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "axios": "^1.12.0",
-    "cypress": "^13.10.0",
+    "cypress": "^15.9.0",
     "cypress-xpath": "^1.8.0",
     "mochawesome": "^7.1.3"
   }

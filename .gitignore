@@ -3,3 +3,8 @@ node_modules
 node_modules/
 .vscode
 /mochawesome-report
+mochawesome-report/
+cypress/videos
+cypress/screenshots
+cypress/downloads
+*.log
