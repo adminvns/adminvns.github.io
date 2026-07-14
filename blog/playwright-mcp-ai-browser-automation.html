@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Playwright + MCP: How AI Agents Drive Browser Automation | Shubham Singh</title>
+  <meta name="description"
+    content="A QA engineer's guide to Playwright MCP — how the Model Context Protocol lets AI agents drive the browser via the accessibility tree, plus the 2026 token-cost debate over MCP vs CLI skills.">
+  <meta name="keywords"
+    content="Playwright MCP, Model Context Protocol, AI browser automation, test agents, accessibility tree, agentic testing, AI test automation, QA automation, Shubham Singh">
+  <meta name="author" content="Shubham Singh">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <meta name="theme-color" content="#0a0a0a">
+
+  <link rel="canonical" href="https://adminvns.github.io/blog/playwright-mcp-ai-browser-automation.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Shubham Singh — Portfolio">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:url" content="https://adminvns.github.io/blog/playwright-mcp-ai-browser-automation.html">
+  <meta property="og:title" content="Playwright + MCP: How AI Agents Now Drive Browser Automation">
+  <meta property="og:description"
+    content="How the Model Context Protocol lets AI agents drive the browser via the accessibility tree — plus the 2026 token-cost debate over MCP vs CLI skills.">
+  <meta property="og:image" content="https://adminvns.github.io/assets/img/profile-pic.png">
+  <meta property="article:published_time" content="2026-07-14">
+  <meta property="article:author" content="Shubham Singh">
+  <meta property="article:section" content="AI Test Automation">
+  <meta property="article:tag" content="Playwright">
+  <meta property="article:tag" content="MCP">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Playwright + MCP: How AI Agents Now Drive Browser Automation">
+  <meta name="twitter:description"
+    content="How MCP lets AI agents drive the browser via the accessibility tree — and when not to use it.">
+  <meta name="twitter:image" content="https://adminvns.github.io/assets/img/profile-pic.png">
+
+  <!-- JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://adminvns.github.io/blog/playwright-mcp-ai-browser-automation.html"
+    },
+    "headline": "Playwright + MCP: How AI Agents Now Drive Browser Automation",
+    "description": "A QA engineer's guide to Playwright MCP — how the Model Context Protocol lets AI agents drive the browser via the accessibility tree, plus the 2026 token-cost debate over MCP vs CLI skills.",
+    "image": "https://adminvns.github.io/assets/img/profile-pic.png",
+    "datePublished": "2026-07-14",
+    "dateModified": "2026-07-14",
+    "author": {
+      "@type": "Person",
+      "name": "Shubham Singh",
+      "url": "https://adminvns.github.io/",
+      "sameAs": ["https://www.linkedin.com/in/adminvns/", "https://github.com/adminvns"]
+    },
+    "publisher": {
+      "@type": "Person",
+      "name": "Shubham Singh",
+      "url": "https://adminvns.github.io/"
+    },
+    "keywords": "Playwright MCP, Model Context Protocol, AI browser automation, test agents, accessibility tree, agentic testing",
+    "articleSection": "AI Test Automation"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://adminvns.github.io/" },
+      { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://adminvns.github.io/#blog" },
+      { "@type": "ListItem", "position": 3, "name": "Playwright + MCP: AI Browser Automation" }
+    ]
+  }
+  </script>
+
+  <link href="../assets/img/favicon.png" rel="icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700|Raleway:300,400,500,600,700|Poppins:300,400,500,600,700"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link href="../assets/css/style.css" rel="stylesheet">
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8G2QPJ8TQ5"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-8G2QPJ8TQ5');
+  </script>
+</head>
+
+<body class="blog-page">
+
+  <div class="theme-switch-wrapper">
+    <label class="theme-switch" for="checkbox">
+      <input type="checkbox" id="checkbox" />
+      <div class="slider round">
+        <i class="fas fa-sun"></i>
+        <i class="fas fa-moon"></i>
+      </div>
+    </label>
+  </div>
+
+  <nav class="blog-topbar">
+    <a href="../" class="brand">Shubham Singh</a>
+    <div class="topbar-links">
+      <a href="../#about" class="hide-sm">About</a>
+      <a href="../#blog">Blog</a>
+      <a href="https://www.linkedin.com/in/adminvns/" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  </nav>
+
+  <main>
+    <article class="blog-article">
+      <div class="breadcrumb">
+        <a href="../">Home</a> &nbsp;/&nbsp; <a href="../#blog">Blog</a> &nbsp;/&nbsp; Playwright + MCP
+      </div>
+
+      <span class="post-tag">AI Test Automation</span>
+      <h1>Playwright + MCP: How AI Agents Now Drive Browser Automation</h1>
+      <div class="post-meta">By Shubham Singh · July 14, 2026 · 6 min read</div>
+
+      <p>If you've spent any time in test automation, you know the two hard problems: writing the scripts, and keeping
+        them from breaking every time a developer renames a CSS class. The pairing of <strong>Playwright</strong> with
+        the <strong>Model Context Protocol (MCP)</strong> takes a serious run at both — and it's reshaped how I think
+        about AI in a QA workflow over the last year.</p>
+
+      <h2>First, what MCP is</h2>
+      <p>The <strong>Model Context Protocol</strong> is an open standard for connecting large language models to external
+        tools and data through a unified client–server architecture. Think of it as a universal adapter: instead of
+        every AI app inventing its own way to "use a tool," MCP defines one protocol, and any compliant client (VS Code,
+        Cursor, Windsurf, Claude Desktop) can talk to any compliant server.</p>
+      <p><a href="https://playwright.dev/docs/getting-started-mcp" target="_blank" rel="noopener">Playwright MCP</a> —
+        Microsoft's reference server — exposes Playwright's browser automation <em>as</em> an MCP server. That means an
+        AI agent can open a browser, navigate, click, type, and assert, all through a standard protocol.</p>
+
+      <h2>The key insight: it works on the accessibility tree, not pixels</h2>
+      <p>This is the detail every QA engineer needs to understand, because it's <em>why</em> the approach is reliable.
+      </p>
+      <p>Playwright MCP does <strong>not</strong> drive the browser with screenshots and a vision model. When a tool
+        runs, it returns a <strong>structured accessibility snapshot</strong> — the page's elements, their roles, and
+        their text content. The agent reasons over that structured data and picks its next action.</p>
+      <p>The practical consequences are big:</p>
+      <ul>
+        <li><strong>Deterministic</strong> — the agent acts on element roles and names, not fuzzy pixel guesses.</li>
+        <li><strong>Fast and cheap-ish</strong> — no image encoding on every step.</li>
+        <li><strong>Robust to visual change</strong> — a restyled button with the same role and label is still
+          findable.</li>
+      </ul>
+      <p>This is the same philosophy that makes ordinary Playwright locators stable, applied to an autonomous agent.</p>
+
+      <h2>From scripts to test <em>agents</em></h2>
+      <p>Traditional automation executes pre-written steps. A <strong>Playwright test agent</strong> flips the model:
+        it's an LLM-driven execution loop wrapped around Playwright's tools. You hand it <em>intent</em> — "complete the
+        checkout flow and verify the success modal appears" — and it inspects the accessibility tree, decides which tool
+        to call, acts, observes the result, and repeats until the goal is met.</p>
+      <p>For exploratory testing and rapidly-changing UIs, this is powerful. The agent adapts to a UI it hasn't seen
+        before instead of throwing a <code>NoSuchElementException</code> the moment a selector drifts.</p>
+
+      <pre><code>// Example: registering Playwright MCP with an MCP client
+{
+  "mcpServers": {
+    "playwright": {
+      "command": "npx",
+      "args": ["@playwright/mcp@latest"]
+    }
+  }
+}</code></pre>
+
+      <p>Point a client like Claude Desktop or Cursor at that, and it can drive a real browser on your behalf.</p>
+
+      <h2>The 2026 reality check: the token-cost debate</h2>
+      <p>I want to be balanced here, because there's genuine nuance the hype skips over. MCP is not automatically the
+        right tool for every job, and the community has spent 2026 arguing about exactly this.</p>
+      <p>The friction is <strong>token cost</strong>. Because the MCP server streams a full accessibility snapshot back
+        to the model on each step, agentic MCP runs can be expensive — reported figures put a single MCP-driven test
+        around <strong>~114K tokens</strong>, versus roughly <strong>~27K tokens</strong> for a comparable
+        CLI-skill-based workflow. That's a 4x difference, and at scale it's real money.</p>
+      <p>The result is a growing counter-trend: many coding agents now favour <strong>CLI-based "skills"</strong> —
+        concise, purpose-built commands — over chatty MCP round-trips for well-defined tasks. MCP has
+        <em>consolidated</em> the agentic-Playwright ecosystem around one protocol (Microsoft's server is the default,
+        with several specialised alternatives competing on token efficiency), but "use MCP for everything" is not the
+        2026 consensus.</p>
+
+      <blockquote>My rule of thumb: reach for a Playwright <em>test agent</em> on MCP when you need adaptive,
+        goal-driven exploration of an unfamiliar or volatile UI. For deterministic, high-volume regression, a plain
+        scripted Playwright suite — or a tight CLI skill — is still cheaper and more predictable.</blockquote>
+
+      <h2>Why this matters for your QA career</h2>
+      <p>The engineers who will thrive aren't the ones who can write the most <code>page.click()</code> calls — agents
+        will increasingly do that. They're the ones who understand <em>when</em> to hand a task to an agent, how to keep
+        it grounded (accessibility tree over pixels), and how to reason about the cost/reliability trade-off. Playwright
+        + MCP is the clearest place to build that intuition today.</p>
+      <p>Pair it with mobile — where <a href="mobilewright-playwright-for-mobile-testing.html">Mobilewright</a> is
+        bringing the same accessibility-tree-plus-MCP model to iOS and Android — and you can see the shape of the next
+        few years of test automation forming.</p>
+
+      <div class="post-cta">
+        <h3>Exploring agentic testing for your team?</h3>
+        <p>I'm a Senior QA Automation Engineer working with Playwright, MCP, and modern CI/CD.</p>
+        <a class="cta-btn" href="https://www.linkedin.com/in/adminvns/" target="_blank" rel="noopener">Connect on
+          LinkedIn</a>
+      </div>
+    </article>
+  </main>
+
+  <footer id="footer">
+    <div class="container">
+      <div class="copyright">&copy; Hosted with ❤ on <strong><span>Github</span></strong></div>
+      <div class="credits"><a href="../">← Back to portfolio</a> | Designed by Shubham Singh</div>
+    </div>
+  </footer>
+
+  <script>
+    const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
+    const currentTheme = localStorage.getItem('theme');
+    if (currentTheme) {
+      document.body.classList.add(currentTheme);
+      if (currentTheme === 'dark-mode') { toggleSwitch.checked = true; }
+    }
+    function switchTheme(e) {
+      if (e.target.checked) {
+        document.body.classList.add('dark-mode');
+        localStorage.setItem('theme', 'dark-mode');
+      } else {
+        document.body.classList.remove('dark-mode');
+        localStorage.setItem('theme', 'light');
+      }
+    }
+    toggleSwitch.addEventListener('change', switchTheme, false);
+  </script>
+
+</body>
+
+</html>
