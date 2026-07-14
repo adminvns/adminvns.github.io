@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>DeepEval: LLM Testing for QA Engineers (2026 Guide) | Shubham Singh</title>
+  <meta name="description"
+    content="How QA automation engineers can test LLM and RAG apps with DeepEval — pytest-native LLM evaluation, G-Eval, hallucination and faithfulness metrics, and CI gating.">
+  <meta name="keywords"
+    content="DeepEval, LLM testing, AI test automation, G-Eval, pytest LLM, RAG evaluation, hallucination metric, faithfulness, QA automation, Shubham Singh">
+  <meta name="author" content="Shubham Singh">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <meta name="theme-color" content="#0a0a0a">
+
+  <link rel="canonical" href="https://adminvns.github.io/blog/deepeval-llm-testing-guide-for-qa-engineers.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Shubham Singh — Portfolio">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:url" content="https://adminvns.github.io/blog/deepeval-llm-testing-guide-for-qa-engineers.html">
+  <meta property="og:title" content="DeepEval: LLM Testing for QA Engineers (2026 Guide)">
+  <meta property="og:description"
+    content="A practical, pytest-native guide to testing LLM and RAG apps with DeepEval — G-Eval, hallucination & faithfulness metrics, and CI quality gates.">
+  <meta property="og:image" content="https://adminvns.github.io/assets/img/profile-pic.png">
+  <meta property="article:published_time" content="2026-06-20">
+  <meta property="article:author" content="Shubham Singh">
+  <meta property="article:section" content="AI Test Automation">
+  <meta property="article:tag" content="DeepEval">
+  <meta property="article:tag" content="LLM Testing">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="DeepEval: LLM Testing for QA Engineers (2026 Guide)">
+  <meta name="twitter:description"
+    content="A practical, pytest-native guide to testing LLM and RAG apps with DeepEval.">
+  <meta name="twitter:image" content="https://adminvns.github.io/assets/img/profile-pic.png">
+
+  <!-- JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://adminvns.github.io/blog/deepeval-llm-testing-guide-for-qa-engineers.html"
+    },
+    "headline": "DeepEval: LLM Testing for QA Engineers (A Practical 2026 Guide)",
+    "description": "How QA automation engineers can test LLM and RAG apps with DeepEval — pytest-native LLM evaluation, G-Eval, hallucination and faithfulness metrics, and CI gating.",
+    "image": "https://adminvns.github.io/assets/img/profile-pic.png",
+    "datePublished": "2026-06-20",
+    "dateModified": "2026-06-20",
+    "author": {
+      "@type": "Person",
+      "name": "Shubham Singh",
+      "url": "https://adminvns.github.io/",
+      "sameAs": ["https://www.linkedin.com/in/adminvns/", "https://github.com/adminvns"]
+    },
+    "publisher": {
+      "@type": "Person",
+      "name": "Shubham Singh",
+      "url": "https://adminvns.github.io/"
+    },
+    "keywords": "DeepEval, LLM testing, AI test automation, G-Eval, RAG evaluation, pytest, QA automation",
+    "articleSection": "AI Test Automation"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://adminvns.github.io/" },
+      { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://adminvns.github.io/#blog" },
+      { "@type": "ListItem", "position": 3, "name": "DeepEval: LLM Testing for QA Engineers" }
+    ]
+  }
+  </script>
+
+  <link href="../assets/img/favicon.png" rel="icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700|Raleway:300,400,500,600,700|Poppins:300,400,500,600,700"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link href="../assets/css/style.css" rel="stylesheet">
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8G2QPJ8TQ5"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-8G2QPJ8TQ5');
+  </script>
+</head>
+
+<body class="blog-page">
+
+  <div class="theme-switch-wrapper">
+    <label class="theme-switch" for="checkbox">
+      <input type="checkbox" id="checkbox" />
+      <div class="slider round">
+        <i class="fas fa-sun"></i>
+        <i class="fas fa-moon"></i>
+      </div>
+    </label>
+  </div>
+
+  <nav class="blog-topbar">
+    <a href="../" class="brand">Shubham Singh</a>
+    <div class="topbar-links">
+      <a href="../#about" class="hide-sm">About</a>
+      <a href="../#blog">Blog</a>
+      <a href="https://www.linkedin.com/in/adminvns/" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  </nav>
+
+  <main>
+    <article class="blog-article">
+      <div class="breadcrumb">
+        <a href="../">Home</a> &nbsp;/&nbsp; <a href="../#blog">Blog</a> &nbsp;/&nbsp; DeepEval
+      </div>
+
+      <span class="post-tag">AI Test Automation</span>
+      <h1>DeepEval: LLM Testing for QA Engineers (A Practical 2026 Guide)</h1>
+      <div class="post-meta">By Shubham Singh · June 20, 2026 · 6 min read</div>
+
+      <p>For a decade, test automation had a comfortable assumption baked into it: given the same input, the system
+        under test returns the same output. Assert on that output, and you have a test. Large language models broke
+        that assumption. Ask an LLM the same question twice and you can get two differently-worded answers that are
+        <em>both</em> correct — or two that are <em>both</em> subtly wrong. As a QA engineer, "assert
+        <code>response == expected</code>" simply doesn't work anymore.
+      </p>
+
+      <p>This is the gap <a href="https://deepeval.com/" target="_blank" rel="noopener">DeepEval</a> fills, and it's
+        become the tool I reach for first when a project ships anything AI-powered.</p>
+
+      <h2>What DeepEval actually is</h2>
+      <p>DeepEval is an open-source LLM evaluation framework from Confident AI. The single most important thing to
+        understand about it — especially if you come from a Selenium/Cypress/Playwright background — is that <strong>it's
+          a pytest plugin</strong>. If you've ever written a unit test in Python, DeepEval feels instantly familiar. You
+        write test cases, you run <code>deepeval test run</code>, and you get pass/fail results you can gate a pipeline
+        on.</p>
+      <p>The difference is <em>how</em> it decides pass or fail. Instead of comparing strings byte-for-byte, DeepEval
+        scores outputs using a mix of <strong>LLM-as-a-judge</strong> evaluation, natural language inference (NLI)
+        models, and statistical methods. That lets it measure fuzzy, human qualities — relevancy, faithfulness,
+        hallucination, bias, tool-calling correctness — the things that actually matter for an LLM feature.</p>
+
+      <h2>The metric that changes everything: G-Eval</h2>
+      <p>Out of the 50+ metrics DeepEval ships in 2026, the one worth learning first is <strong>G-Eval</strong>. G-Eval
+        uses an LLM-as-a-judge with chain-of-thought reasoning to evaluate output against <em>any custom criteria you
+          describe in plain English</em>.</p>
+      <p>That is a genuinely new capability for a QA engineer. You can write an acceptance criterion the same way a
+        product owner would phrase it — "the answer must not promise a refund timeline" — and turn it into an automated,
+        repeatable check.</p>
+
+      <pre><code>from deepeval import assert_test
+from deepeval.metrics import GEval
+from deepeval.test_case import LLMTestCase, LLMTestCaseParams
+
+correctness = GEval(
+    name="Correctness",
+    criteria="Determine whether the actual output is factually "
+             "correct and does not contradict the expected answer.",
+    evaluation_params=[
+        LLMTestCaseParams.INPUT,
+        LLMTestCaseParams.ACTUAL_OUTPUT,
+        LLMTestCaseParams.EXPECTED_OUTPUT,
+    ],
+    threshold=0.5,
+)
+
+def test_billing_answer():
+    test_case = LLMTestCase(
+        input="How long do refunds take?",
+        actual_output="Refunds are processed within 5-7 business days.",
+        expected_output="Refunds take 5 to 7 business days.",
+    )
+    assert_test(test_case, [correctness])</code></pre>
+
+      <p>Run that with <code>deepeval test run test_billing.py</code> and it behaves like any other pytest suite — green
+        when the criterion holds, red (with a reasoned explanation) when it doesn't.</p>
+
+      <h2>The metrics QA teams lean on most</h2>
+      <p>Beyond G-Eval, a handful of built-in metrics cover the majority of real-world LLM bugs:</p>
+      <ul>
+        <li><strong>Answer Relevancy</strong> — is the response actually addressing the question, or wandering off?</li>
+        <li><strong>Faithfulness</strong> — for RAG systems, does the answer stay true to the retrieved context, or is
+          the model inventing things?</li>
+        <li><strong>Hallucination</strong> — is the model stating facts that aren't supported by any provided source?
+        </li>
+        <li><strong>Contextual Precision / Recall</strong> — is your retrieval step surfacing the <em>right</em>
+          documents in the <em>right</em> order?</li>
+        <li><strong>Bias &amp; Toxicity</strong> — safety gates you genuinely want failing loudly in CI.</li>
+      </ul>
+      <p>For a Retrieval-Augmented Generation app, Faithfulness plus Contextual Recall together tell you whether a bad
+        answer is the <em>retriever's</em> fault or the <em>model's</em> fault — a distinction that used to take hours of
+        manual debugging.</p>
+
+      <h2>Wiring it into CI/CD</h2>
+      <p>Because DeepEval is pytest-native, the CI story is boring in the best possible way. It's the same pattern I
+        already use for Cypress and Playwright suites:</p>
+      <ol>
+        <li>Store a dataset of representative inputs (a "golden set") as test cases.</li>
+        <li>Run <code>deepeval test run</code> as a stage in GitHub Actions or Jenkins.</li>
+        <li>Fail the build if any metric drops below its threshold.</li>
+      </ol>
+      <p>That converts "the AI feels worse this week" — an unfalsifiable complaint — into a red pipeline with a number
+        attached. It's the difference between vibes and a quality gate.</p>
+
+      <blockquote>The mental shift for a QA engineer isn't the syntax — it's accepting that a <em>score above a
+          threshold</em>, not an exact match, is a legitimate pass condition.</blockquote>
+
+      <h2>Where DeepEval fits in a modern QA stack</h2>
+      <p>I don't think of DeepEval as replacing anything. Your Playwright tests still verify the app renders and the
+        button works. DeepEval sits one layer deeper, verifying that the <em>content</em> the LLM produced is relevant,
+        grounded, and safe. On an AI product, you need both — and a QA engineer who can speak fluently about
+        hallucination rate and faithfulness scores is suddenly a lot more valuable than one who only knows locators.</p>
+      <p>If you're a test automation engineer watching AI features land in your product and wondering where you fit,
+        this is the answer: LLM evaluation <em>is</em> QA. DeepEval is the most approachable on-ramp I've found. Next,
+        see how <a href="playwright-mcp-ai-browser-automation.html">Playwright + MCP</a> brings AI agents into
+        browser testing.</p>
+
+      <div class="post-cta">
+        <h3>Need a real quality gate for your AI feature?</h3>
+        <p>I'm a Senior QA Automation Engineer specialising in AI test automation, Playwright, and CI/CD.</p>
+        <a class="cta-btn" href="https://www.linkedin.com/in/adminvns/" target="_blank" rel="noopener">Let's connect on
+          LinkedIn</a>
+      </div>
+    </article>
+  </main>
+
+  <footer id="footer">
+    <div class="container">
+      <div class="copyright">&copy; Hosted with ❤ on <strong><span>Github</span></strong></div>
+      <div class="credits"><a href="../">← Back to portfolio</a> | Designed by Shubham Singh</div>
+    </div>
+  </footer>
+
+  <script>
+    const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
+    const currentTheme = localStorage.getItem('theme');
+    if (currentTheme) {
+      document.body.classList.add(currentTheme);
+      if (currentTheme === 'dark-mode') { toggleSwitch.checked = true; }
+    }
+    function switchTheme(e) {
+      if (e.target.checked) {
+        document.body.classList.add('dark-mode');
+        localStorage.setItem('theme', 'dark-mode');
+      } else {
+        document.body.classList.remove('dark-mode');
+        localStorage.setItem('theme', 'light');
+      }
+    }
+    toggleSwitch.addEventListener('change', switchTheme, false);
+  </script>
+
+</body>
+
+</html>
