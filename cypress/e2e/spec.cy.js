@@ -146,7 +146,7 @@ describe('Hero Section Check', () => {
 
   it('Should display hero content', () => {
     cy.get('#hero .hero-container').should('be.visible')
-    cy.get('#hero h1').should('contain', 'Shubham')
+    cy.get('#hero h2').should('contain', 'Shubham')
   })
 
   it('Should have hero buttons with icons', () => {
